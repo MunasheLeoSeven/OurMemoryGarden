@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Memory Garden 🌸</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <!-- NEW Setup Screen  -->
+    <div class="setup-container" id="setupScreen">
+      <h2>🌸 Welcome to Memory Garden 🌸</h2>
+
+      <!-- Create a new garden -->
+      <button class="btn btn-primary" onclick="createGarden()">
+        Create My Garden ✨
+      </button>
+
+      <!-- Join an existing garden -->
+      <input
+        type="text"
+        class="setup-input"
+        id="joinCode"
+        placeholder="Enter 6-letter Garden Code"
+        maxlength="6"
+      />
+      <button class="btn btn-secondary" onclick="joinGarden()">
+        Join Garden 🔗
+      </button>
+
+      <input
+        type="text"
+        class="setup-input"
+        id="userName"
+        placeholder="Your Name"
+      />
+    </div>
+
+    <!-- Main App (Hidden Initially) -->
+    <div class="container" id="mainApp" style="display: none">
+      <div class="online-indicator" id="onlineIndicator">
+        <span id="onlineStatus">👤 Just You</span>
+        <span
+          id="gardenCodeDisplay"
+          style="margin-left: 10px; font-weight: 600"
+        ></span>
+      </div>
+
+      <header class="header">
+        <h1>Our Memory Garden 🌸</h1>
+        <p id="gardenName">Loading...</p>
+      </header>
+
+      <div class="nav-tabs">
+        <button class="nav-tab active" onclick="showSection('moods', this)">
+          Daily Moods 🌈
+        </button>
+        <button class="nav-tab" onclick="showSection('memories', this)">
+          Memory Wall 📸
+        </button>
+        <button class="nav-tab" onclick="showSection('journal', this)">
+          Journal 📝
+        </button>
+      </div>
+
+      <!-- Mood Tracker -->
+      <div id="moods" class="section active">
+        <div style="text-align: center">
+          <h2 style="color: #8b5fbf; margin-bottom: 20px">
+            How are you feeling today? ✨
+          </h2>
+
+          <div class="mood-grid">
+            <div class="mood-item" onclick="selectMood(this,'😊','Happy')">
+              <span class="mood-emoji">😊</span>
+              <div class="mood-label">Happy</div>
+            </div>
+            <div class="mood-item" onclick="selectMood(this,'💕','Loved')">
+              <span class="mood-emoji">💕</span>
+              <div class="mood-label">Loved</div>
+            </div>
+            <div class="mood-item" onclick="selectMood(this,'✨','Excited')">
+              <span class="mood-emoji">✨</span>
+              <div class="mood-label">Excited</div>
+            </div>
+            <div class="mood-item" onclick="selectMood(this,'🌸','Peaceful')">
+              <span class="mood-emoji">🌸</span>
+              <div class="mood-label">Peaceful</div>
+            </div>
+            <div class="mood-item" onclick="selectMood(this,'🤗','Cozy')">
+              <span class="mood-emoji">🤗</span>
+              <div class="mood-label">Cozy</div>
+            </div>
+            <div class="mood-item" onclick="selectMood(this,'🌙','Sleepy')">
+              <span class="mood-emoji">🌙</span>
+              <div class="mood-label">Sleepy</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="saveMood()">
+            Save Today's Mood 💫
+          </button>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number" id="totalMoods">0</div>
+              <div class="stat-label">Moods Shared</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="totalMemories">0</div>
+              <div class="stat-label">Memories</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">💖</div>
+              <div class="stat-label">Connected</div>
+            </div>
+          </div>
+
+          <div id="recentMoods"></div>
+        </div>
+      </div>
+
+      <!-- Memory Wall -->
+      <div id="memories" class="section">
+        <h2 style="color: #8b5fbf; margin-bottom: 25px; text-align: center">
+          Our Memory Wall 📸
+        </h2>
+        <div style="text-align: center; margin-bottom: 30px">
+          <button class="btn btn-secondary" onclick="addMemory()">
+            Add New Memory ✨
+          </button>
+        </div>
+        <div class="memory-wall" id="memoryWall"></div>
+      </div>
+
+      <!-- Journal -->
+      <div id="journal" class="section">
+        <div
+          style="
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+          "
+        >
+          <h3 id="journalPrompt" style="color: #6c5ce7">
+            What made you smile today?
+          </h3>
+        </div>
+        <textarea
+          class="journal-input"
+          id="journalText"
+          placeholder="Share your thoughts..."
+        ></textarea>
+        <div style="text-align: center">
+          <button class="btn btn-primary" onclick="saveJournalEntry()">
+            Save Entry 💫
+          </button>
+        </div>
+        <div id="recentJournals"></div>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
